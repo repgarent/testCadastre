@@ -2,3 +2,5 @@ gestion des accents : les chaines accentués dans la DB ne ressortent pas. ex:am
 idée :
 -si text OU suppression_diacritics(text) corespond, affiche ....ect
 -désaccentuer ce qui  vient de la base de données.
+
+test git
