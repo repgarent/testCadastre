@@ -42,6 +42,7 @@ class testDock(QtGui.QDockWidget, Ui_DockWidget):
         #Data = cursor.fetchall()
         Data = cursor.execute("SELECT nom FROM proprietaire")
         listData = [unicode(i[0]) for i in Data]#création de la liste utilisé par la lineEdit
+        print (listData)
         #for row in cursor.fetchall():
             #finalList.append(row[0])
         #print finalList

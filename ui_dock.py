@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'ui_dock.ui'
 #
-# Created: Thu Dec 11 12:15:11 2014
+# Created: Thu Dec 11 15:31:39 2014
 #      by: PyQt4 UI code generator 4.10.4
 #
 # WARNING! All changes made in this file will be lost!
@@ -37,6 +37,7 @@ class Ui_DockWidget(object):
         self.verticalLayout_3.setObjectName(_fromUtf8("verticalLayout_3"))
         self.cbxProprio = QtGui.QComboBox(self.groupBox_2)
         self.cbxProprio.setEditable(True)
+        self.cbxProprio.setInsertPolicy(QtGui.QComboBox.InsertAfterCurrent)
         self.cbxProprio.setSizeAdjustPolicy(QtGui.QComboBox.AdjustToContents)
         self.cbxProprio.setDuplicatesEnabled(False)
         self.cbxProprio.setObjectName(_fromUtf8("cbxProprio"))
