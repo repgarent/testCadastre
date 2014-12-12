@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'ui_dock.ui'
 #
-# Created: Thu Dec 11 15:31:39 2014
+# Created: Fri Dec 12 09:57:28 2014
 #      by: PyQt4 UI code generator 4.10.4
 #
 # WARNING! All changes made in this file will be lost!
@@ -37,7 +37,7 @@ class Ui_DockWidget(object):
         self.verticalLayout_3.setObjectName(_fromUtf8("verticalLayout_3"))
         self.cbxProprio = QtGui.QComboBox(self.groupBox_2)
         self.cbxProprio.setEditable(True)
-        self.cbxProprio.setInsertPolicy(QtGui.QComboBox.InsertAfterCurrent)
+        self.cbxProprio.setInsertPolicy(QtGui.QComboBox.InsertAtBottom)
         self.cbxProprio.setSizeAdjustPolicy(QtGui.QComboBox.AdjustToContents)
         self.cbxProprio.setDuplicatesEnabled(False)
         self.cbxProprio.setObjectName(_fromUtf8("cbxProprio"))
@@ -61,6 +61,9 @@ class Ui_DockWidget(object):
         self.lwgResult.setObjectName(_fromUtf8("lwgResult"))
         self.verticalLayout.addWidget(self.lwgResult)
         self.verticalLayout_2.addWidget(self.groupBox)
+        self.letCompleter = QtGui.QLineEdit(self.dockWidgetContents)
+        self.letCompleter.setObjectName(_fromUtf8("letCompleter"))
+        self.verticalLayout_2.addWidget(self.letCompleter)
         self.groupBox_3 = QtGui.QGroupBox(self.dockWidgetContents)
         self.groupBox_3.setFlat(False)
         self.groupBox_3.setCheckable(False)

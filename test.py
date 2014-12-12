@@ -78,6 +78,8 @@ class test(object):
         #remplissage de la letRecherche
         self.dwg.letRecherche.textChanged.connect(self.letRechercheChange)
         
+        #remplissage de la letCompleter
+        self.dwg.letCompleter.textChanged.connect(self.letCompleterChange)
         #remplissage pour letRechercheV1
         #self.dwg.letRechercheV1.textChanged.connect(self.letRechercheV1Change)
 
@@ -139,6 +141,22 @@ class test(object):
             cursor.execute("SELECT nom FROM proprietaire where nom like ?", ('%' + text2 + '%', ))
             for row in cursor.fetchall():
                 self.dwg.lwgResult.addItem(row[0])
+
+    def letCompleterChange(self, text):
+        
+        class LineEdit(QtGui.QLineEdit):
+            def __init__(self, parent, completerContents):
+                super(LineEdit, self).__init__(parent)
+
+                self.completerList = list()
+                for content in completerContents:
+                    self.completerList.append(content)#Appends a new paragraph with text to the end of the text edit.
+                self.completer = QtGui.QCompleter(self.completerList, self)
+                self.completer.setCompletionMode(QtGui.QCompleter.PopupCompletion)#affiche une popup avec une liste de suggestion
+                self.completer.setCaseSensitivity(QtCore.Qt.CaseInsensitive)#définit la sensibilité a la casse
+                self.setCompleter(self.completer)
+
+ 
 
     def suppression_diacritics(self, s):
         def remove(char):

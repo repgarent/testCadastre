@@ -42,7 +42,6 @@ class testDock(QtGui.QDockWidget, Ui_DockWidget):
         #Data = cursor.fetchall()
         Data = cursor.execute("SELECT nom FROM proprietaire")
         listData = [unicode(i[0]) for i in Data]#création de la liste utilisé par la lineEdit
-        print (listData)
         #for row in cursor.fetchall():
             #finalList.append(row[0])
         #print finalList
@@ -57,7 +56,7 @@ class testDock(QtGui.QDockWidget, Ui_DockWidget):
         #print finalList
         self.lineEdit = LineEdit(parent=self.dockWidgetContents, completerContents=listData)
         self.verticalLayout_4.addWidget(self.lineEdit)
-
+"""
 class LineEdit(QtGui.QLineEdit):
     def __init__(self, parent, completerContents):
         super(LineEdit, self).__init__(parent)
@@ -69,3 +68,4 @@ class LineEdit(QtGui.QLineEdit):
         self.completer.setCompletionMode(QtGui.QCompleter.PopupCompletion)#affiche une popup avec une liste de suggestion
         self.completer.setCaseSensitivity(QtCore.Qt.CaseInsensitive)#définit la sensibilité a la casse
         self.setCompleter(self.completer)
+"""
