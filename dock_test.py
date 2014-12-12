@@ -83,7 +83,7 @@ class LineEdit(QtGui.QLineEdit):
         self.completer.setModel(self.proxymodel)
 
         # chaque changement de texte déclenchera la filtration du model
-        self.textEdited.connect(self.proxymodel.setFilterFixedString)
+        self.textChanged.connect(self.proxymodel.setFilterFixedString)
 
     def getList(self):
         print "fonction getList"
@@ -98,7 +98,7 @@ class LineEdit(QtGui.QLineEdit):
             data = list()
             for row in cursor.fetchall():
                 data.append(row[0])
-            print data
+            print "connexion réussie"
         # Catch the exception
         except sqlite3.Error, e:
             print "Error %s:" % e.args[0]
