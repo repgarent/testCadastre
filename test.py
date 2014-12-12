@@ -143,8 +143,20 @@ class test(object):
                 self.dwg.lwgResult.addItem(row[0])
 
     def letCompleterChange(self, text):
-        pass
- 
+        self.completerList = list()
+        db = sqlite3.connect(os.path.join(os.path.dirname(__file__),'data.sqlite'))
+        cursor = db.cursor()
+        cursor.execute("SELECT nom FROM proprietaire where nom like ?", ('%' + text + '%', ))
+        for row in cursor.fetchall():
+            self.completerList.append(row[0])
+        self.completer = QtGui.QCompleter(self.completerList, self)
+        self.completer.setCompletionMode(QtGui.QCompleter.PopupCompletion)#affiche une popup avec une liste de suggestion
+        self.completer.setCaseSensitivity(QtCore.Qt.CaseInsensitive)#définit la sensibilité a la casse
+        self.setCompleter(self.completer)
+
+        model = QtGui.QStringListModel(self)
+        model.setStringList(self.completerList)
+        completer.setModel(model)
 
     def suppression_diacritics(self, s):
         def remove(char):
