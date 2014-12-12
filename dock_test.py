@@ -36,12 +36,10 @@ class testDock(QtGui.QDockWidget, Ui_DockWidget):
         # http://qt-project.org/doc/qt-4.8/designer-using-a-ui-file.html
         # #widgets-and-dialogs-with-auto-connect
         self.setupUi(self)
-        db = sqlite3.connect(os.path.join(os.path.dirname(__file__),'data.sqlite'))
-        cursor = db.cursor()
-        #cursor.execute("SELECT nom FROM proprietaire")
-        #Data = cursor.fetchall()
-        Data = cursor.execute("SELECT nom FROM proprietaire")
-        listData = [unicode(i[0]) for i in Data]#création de la liste utilisé par la lineEdit
+        #db = sqlite3.connect(os.path.join(os.path.dirname(__file__),'data.sqlite'))
+        #cursor = db.cursor()
+        #Data = cursor.execute("SELECT nom FROM proprietaire")
+        #listData = [unicode(i[0]) for i in Data]#création de la liste utilisé par la lineEdit
         #for row in cursor.fetchall():
             #finalList.append(row[0])
         #print finalList
@@ -54,9 +52,64 @@ class testDock(QtGui.QDockWidget, Ui_DockWidget):
         #for row in listString():
             #finalList.append(str(row[0]))
         #print finalList
-        self.lineEdit = LineEdit(parent=self.dockWidgetContents, completerContents=listData)
+        self.lineEdit = LineEdit(parent=self.dockWidgetContents)
         self.verticalLayout_4.addWidget(self.lineEdit)
+        #self.lineEdit = LineEdit(self)
+        #self.verticalLayout_4.addWidget(self.verticalLayout_4.count() + 2, QtGui.QFormLayout.LabelRole, self.lineEdit)
 
+
+class LineEdit(QtGui.QLineEdit):
+    def __init__(self, parent=None):
+        super(LineEdit, self).__init__(parent)
+
+        self.setFocusPolicy(QtCore.Qt.StrongFocus)
+
+        # installe le QCompleter
+        self.completer = QtGui.QCompleter(self)
+        self.completer.setCompletionMode(QtGui.QCompleter.UnfilteredPopupCompletion)
+        self.setCompleter(self.completer)
+
+        # installe le model à partir de la liste fournie datas
+        model = QtGui.QStandardItemModel()
+        #for i, word in enumerate(datas):
+        for i, word in enumerate(self.getList()):
+            item = QtGui.QStandardItem(word)
+            model.setItem(i, 0, item)
+
+        # installe le QSortFilterProxyModel qui s'insère entre le QCompleter et le model
+        self.proxymodel = QtGui.QSortFilterProxyModel(self)
+        self.proxymodel.setFilterCaseSensitivity(QtCore.Qt.CaseInsensitive)
+        self.proxymodel.setSourceModel(model)
+        self.completer.setModel(self.proxymodel)
+
+        # chaque changement de texte déclenchera la filtration du model
+        self.textEdited.connect(self.proxymodel.setFilterFixedString)
+
+    def getList(self):
+        print "fonction getList"
+        try:
+            # Creates or opens a file called mydb with a SQLite3 DB
+            db = sqlite3.connect((os.path.join(os.path.dirname(__file__),'data.sqlite')))
+            # Get a cursor object
+            cursor = db.cursor()
+            # Select
+            cursor.execute('SELECT nom FROM proprietaire')
+            # Fetch
+            data = list()
+            for row in cursor.fetchall():
+                data.append(row[0])
+            print data
+        # Catch the exception
+        except sqlite3.Error, e:
+            print "Error %s:" % e.args[0]
+            sys.exit(1)
+
+        finally:
+            if db:
+                db.close()
+
+        return data
+"""
 class LineEdit(QtGui.QLineEdit):
     def __init__(self, parent, completerContents):
         super(LineEdit, self).__init__(parent)
@@ -68,4 +121,4 @@ class LineEdit(QtGui.QLineEdit):
         self.completer.setCompletionMode(QtGui.QCompleter.PopupCompletion)#affiche une popup avec une liste de suggestion
         self.completer.setCaseSensitivity(QtCore.Qt.CaseInsensitive)#définit la sensibilité a la casse
         self.setCompleter(self.completer)
-
+"""

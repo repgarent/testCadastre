@@ -79,7 +79,7 @@ class test(object):
         self.dwg.letRecherche.textChanged.connect(self.letRechercheChange)
         
         #remplissage de la letCompleter
-        self.dwg.letCompleter.textChanged.connect(self.letCompleterChange)
+        #self.dwg.letCompleter.textChanged.connect(self.letCompleterChange)
         #remplissage pour letRechercheV1
         #self.dwg.letRechercheV1.textChanged.connect(self.letRechercheV1Change)
 
@@ -141,7 +141,7 @@ class test(object):
             cursor.execute("SELECT nom FROM proprietaire where nom like ?", ('%' + text2 + '%', ))
             for row in cursor.fetchall():
                 self.dwg.lwgResult.addItem(row[0])
-
+    """
     def letCompleterChange(self, text):
         self.completerList = list()
         db = sqlite3.connect(os.path.join(os.path.dirname(__file__),'data.sqlite'))
@@ -157,7 +157,7 @@ class test(object):
         model = QtGui.QStringListModel(self)
         model.setStringList(self.completerList)
         completer.setModel(model)
-
+    """
     def suppression_diacritics(self, s):
         def remove(char):
             deco = unicodedata.decomposition(char)
