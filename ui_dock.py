@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'ui_dock.ui'
 #
-# Created: Mon Dec 15 12:06:04 2014
+# Created: Mon Dec 15 15:52:51 2014
 #      by: PyQt4 UI code generator 4.10.4
 #
 # WARNING! All changes made in this file will be lost!
@@ -67,7 +67,7 @@ class Ui_DockWidget(object):
     def retranslateUi(self, DockWidget):
         DockWidget.setWindowTitle(_translate("DockWidget", "Outil de recherche", None))
         self.groupBox_3.setTitle(_translate("DockWidget", "Recherche de propriétaire", None))
-        self.groupBox.setTitle(_translate("DockWidget", "lineEdit+listWidget", None))
+        self.groupBox.setTitle(_translate("DockWidget", "Recherche de propriétaire", None))
         self.label.setText(_translate("DockWidget", "Entrez votre recherche", None))
         self.label_2.setText(_translate("DockWidget", "Les résultat s\'afficheront ici", None))
 
