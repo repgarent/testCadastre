@@ -32,7 +32,7 @@
     <item>
      <widget class="QGroupBox" name="groupBox">
       <property name="title">
-       <string>lineEdit+listWidget</string>
+       <string>Recherche de propriétaire</string>
       </property>
       <layout class="QVBoxLayout" name="verticalLayout">
        <item>

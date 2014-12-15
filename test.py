@@ -86,9 +86,9 @@ class test(object):
             #on remplit la liste d'affichage
             for row in cursor.fetchall():
                 self.dwg.lwgResult.addItem(row[0])
-            cursor.execute("SELECT nom FROM proprietaire where nom like ?", ('%' + text2 + '%', ))
-            for row in cursor.fetchall():
-                self.dwg.lwgResult.addItem(row[0])
+            #cursor.execute("SELECT nom FROM proprietaire where nom like ?", ('%' + text2 + '%', ))
+            #for row in cursor.fetchall():
+                #self.dwg.lwgResult.addItem(row[0])
 
     def suppression_diacritics(self, s):
         def remove(char):
