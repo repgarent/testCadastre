@@ -68,7 +68,6 @@ class LineEdit(QtGui.QLineEdit):
         self.textChanged.connect(self.proxymodel.setFilterFixedString)
 
     def getList(self):
-        print "fonction getList"
         try:
             # Creates or opens a file called mydb with a SQLite3 DB
             db = sqlite3.connect((os.path.join(os.path.dirname(__file__),'data.sqlite')))
@@ -80,7 +79,6 @@ class LineEdit(QtGui.QLineEdit):
             data = list()
             for row in cursor.fetchall():
                 data.append(row[0])
-            print "connexion réussie"
         # Catch the exception
         except sqlite3.Error, e:
             print "Error %s:" % e.args[0]
