@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'ui_dock.ui'
 #
-# Created: Fri Dec 12 17:35:57 2014
+# Created: Mon Dec 15 12:06:04 2014
 #      by: PyQt4 UI code generator 4.10.4
 #
 # WARNING! All changes made in this file will be lost!
@@ -26,23 +26,18 @@ except AttributeError:
 class Ui_DockWidget(object):
     def setupUi(self, DockWidget):
         DockWidget.setObjectName(_fromUtf8("DockWidget"))
-        DockWidget.resize(452, 403)
+        DockWidget.resize(593, 911)
         self.dockWidgetContents = QtGui.QWidget()
         self.dockWidgetContents.setObjectName(_fromUtf8("dockWidgetContents"))
         self.verticalLayout_2 = QtGui.QVBoxLayout(self.dockWidgetContents)
         self.verticalLayout_2.setObjectName(_fromUtf8("verticalLayout_2"))
-        self.groupBox_2 = QtGui.QGroupBox(self.dockWidgetContents)
-        self.groupBox_2.setObjectName(_fromUtf8("groupBox_2"))
-        self.verticalLayout_3 = QtGui.QVBoxLayout(self.groupBox_2)
-        self.verticalLayout_3.setObjectName(_fromUtf8("verticalLayout_3"))
-        self.cbxProprio = QtGui.QComboBox(self.groupBox_2)
-        self.cbxProprio.setEditable(True)
-        self.cbxProprio.setInsertPolicy(QtGui.QComboBox.InsertAtBottom)
-        self.cbxProprio.setSizeAdjustPolicy(QtGui.QComboBox.AdjustToContents)
-        self.cbxProprio.setDuplicatesEnabled(False)
-        self.cbxProprio.setObjectName(_fromUtf8("cbxProprio"))
-        self.verticalLayout_3.addWidget(self.cbxProprio)
-        self.verticalLayout_2.addWidget(self.groupBox_2)
+        self.groupBox_3 = QtGui.QGroupBox(self.dockWidgetContents)
+        self.groupBox_3.setFlat(False)
+        self.groupBox_3.setCheckable(False)
+        self.groupBox_3.setObjectName(_fromUtf8("groupBox_3"))
+        self.verticalLayout_4 = QtGui.QVBoxLayout(self.groupBox_3)
+        self.verticalLayout_4.setObjectName(_fromUtf8("verticalLayout_4"))
+        self.verticalLayout_2.addWidget(self.groupBox_3)
         self.groupBox = QtGui.QGroupBox(self.dockWidgetContents)
         self.groupBox.setObjectName(_fromUtf8("groupBox"))
         self.verticalLayout = QtGui.QVBoxLayout(self.groupBox)
@@ -57,27 +52,22 @@ class Ui_DockWidget(object):
         self.label_2.setObjectName(_fromUtf8("label_2"))
         self.verticalLayout.addWidget(self.label_2)
         self.lwgResult = QtGui.QListWidget(self.groupBox)
+        self.lwgResult.setMaximumSize(QtCore.QSize(16777215, 16777215))
         self.lwgResult.setMovement(QtGui.QListView.Static)
         self.lwgResult.setObjectName(_fromUtf8("lwgResult"))
         self.verticalLayout.addWidget(self.lwgResult)
+        spacerItem = QtGui.QSpacerItem(20, 500, QtGui.QSizePolicy.Minimum, QtGui.QSizePolicy.Expanding)
+        self.verticalLayout.addItem(spacerItem)
         self.verticalLayout_2.addWidget(self.groupBox)
-        self.groupBox_3 = QtGui.QGroupBox(self.dockWidgetContents)
-        self.groupBox_3.setFlat(False)
-        self.groupBox_3.setCheckable(False)
-        self.groupBox_3.setObjectName(_fromUtf8("groupBox_3"))
-        self.verticalLayout_4 = QtGui.QVBoxLayout(self.groupBox_3)
-        self.verticalLayout_4.setObjectName(_fromUtf8("verticalLayout_4"))
-        self.verticalLayout_2.addWidget(self.groupBox_3)
         DockWidget.setWidget(self.dockWidgetContents)
 
         self.retranslateUi(DockWidget)
         QtCore.QMetaObject.connectSlotsByName(DockWidget)
 
     def retranslateUi(self, DockWidget):
-        DockWidget.setWindowTitle(_translate("DockWidget", "DockWidget", None))
-        self.groupBox_2.setTitle(_translate("DockWidget", "comboBox", None))
+        DockWidget.setWindowTitle(_translate("DockWidget", "Outil de recherche", None))
+        self.groupBox_3.setTitle(_translate("DockWidget", "Recherche de propriétaire", None))
         self.groupBox.setTitle(_translate("DockWidget", "lineEdit+listWidget", None))
         self.label.setText(_translate("DockWidget", "Entrez votre recherche", None))
         self.label_2.setText(_translate("DockWidget", "Les résultat s\'afficheront ici", None))
-        self.groupBox_3.setTitle(_translate("DockWidget", "lineEdit+Qcompleter", None))
 

@@ -1,6 +1,0 @@
-gestion des accents : les chaines accentués dans la DB ne ressortent pas. ex:amé ne ressort aucun résultat.
-idée :
--si text OU suppression_diacritics(text) corespond, affiche ....ect
--désaccentuer ce qui  vient de la base de données.
-
-test git

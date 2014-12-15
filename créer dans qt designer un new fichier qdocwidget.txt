@@ -1,5 +1,0 @@
-créer dans qt designer un new fichier qdocwidget.
-mettre a jour le ficher synchro.
-ajouter dans la méthode init de test.py :self.dwg = Ui_DockWidget()
-dans qt designer, faire clic droit sur dockwidget dans l'inspecteur d'objet -> mettre en page->mettre en page verticalement.
-synchroniser

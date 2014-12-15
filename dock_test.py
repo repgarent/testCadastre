@@ -36,27 +36,9 @@ class testDock(QtGui.QDockWidget, Ui_DockWidget):
         # http://qt-project.org/doc/qt-4.8/designer-using-a-ui-file.html
         # #widgets-and-dialogs-with-auto-connect
         self.setupUi(self)
-        #db = sqlite3.connect(os.path.join(os.path.dirname(__file__),'data.sqlite'))
-        #cursor = db.cursor()
-        #Data = cursor.execute("SELECT nom FROM proprietaire")
-        #listData = [unicode(i[0]) for i in Data]#création de la liste utilisé par la lineEdit
-        #for row in cursor.fetchall():
-            #finalList.append(row[0])
-        #print finalList
-        #print type(finalList)
-        #listTuple = cursor.execute("SELECT nom FROM proprietaire")
-        #listString = '\n'.join(''.join(s) for s in listTuple)
-        #print type(listString)
-        #print listString
         
-        #for row in listString():
-            #finalList.append(str(row[0]))
-        #print finalList
         self.lineEdit = LineEdit(parent=self.dockWidgetContents)
         self.verticalLayout_4.addWidget(self.lineEdit)
-        #self.lineEdit = LineEdit(self)
-        #self.verticalLayout_4.addWidget(self.verticalLayout_4.count() + 2, QtGui.QFormLayout.LabelRole, self.lineEdit)
-
 
 class LineEdit(QtGui.QLineEdit):
     def __init__(self, parent=None):
@@ -109,16 +91,3 @@ class LineEdit(QtGui.QLineEdit):
                 db.close()
 
         return data
-"""
-class LineEdit(QtGui.QLineEdit):
-    def __init__(self, parent, completerContents):
-        super(LineEdit, self).__init__(parent)
-
-        self.completerList = list()
-        for content in completerContents:
-            self.completerList.append(content)#Appends a new paragraph with text to the end of the text edit.
-        self.completer = QtGui.QCompleter(self.completerList, self)
-        self.completer.setCompletionMode(QtGui.QCompleter.PopupCompletion)#affiche une popup avec une liste de suggestion
-        self.completer.setCaseSensitivity(QtCore.Qt.CaseInsensitive)#définit la sensibilité a la casse
-        self.setCompleter(self.completer)
-"""

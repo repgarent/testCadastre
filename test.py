@@ -33,7 +33,6 @@ import sqlite3
 import unicodedata
 
 
-
 class test(object):
 
     def __init__(self, iface):
@@ -56,8 +55,6 @@ class test(object):
         self.dwg = testDock()
         self.iface.addDockWidget(Qt.RightDockWidgetArea, self.dwg)
 
-        # Create the dialog (after translation) and keep reference
-        #self.dlg = testDialog()
 
     def initGui(self):
         # Create action that will start plugin configuration
@@ -71,58 +68,9 @@ class test(object):
         self.iface.addToolBarIcon(self.action)
         self.iface.addPluginToMenu(u"&Test", self.action)
 
-        # Remplissage de la combobox Propriétaire
-        self.dwg.cbxProprio.setAutoCompletionCaseSensitivity (Qt.CaseInsensitive)#insensible a la casse
-        self.dwg.cbxProprio.editTextChanged.connect(self.cbxProprioChange)#execute la fonction quand le texte change
-
         #remplissage de la letRecherche
         self.dwg.letRecherche.textChanged.connect(self.letRechercheChange)
         
-        #remplissage de la letCompleter
-        #self.dwg.letCompleter.textChanged.connect(self.letCompleterChange)
-        #remplissage pour letRechercheV1
-        #self.dwg.letRechercheV1.textChanged.connect(self.letRechercheV1Change)
-
-        #bouton de test
-        #self.dlg.btnTest.clicked.connect(self.btnTestClicked)#execute la fonction au clic
-
-    """ cette version ne marche pas, appel de la fonction a elle-meme en boucle
-    def cbxProprioChange(self, text):
-        print "recherche en cours " + text +
-        for i in range(self.dlg.cbxProprio.count() - 1):
-            self.dlg.cbxProprio.removeItem(i)
-            #print(self.dlg.cbxProprio.currentIndex())
-
-        self.dlg.cbxProprio.setEditText(text)
-        db = sqlite3.connect(os.path.join(os.path.dirname(__file__),'data.sqlite'))
-        cursor = db.cursor()
-        cursor.execute("SELECT nom FROM proprietaire where nom like ?", ('%' + text + '%', ))
-        for row in cursor.fetchall():
-            self.dlg.cbxProprio.addItem(row[0])
-            print(row[0])
-    """
-
-    def cbxProprioChange(self, text):
-        #print "recherche en cours " + text
-        #on bloque l'event editTextChanged
-        self.dwg.cbxProprio.blockSignals(True)
-        #on vide la liste d'affichage
-        self.dwg.cbxProprio.clear()
-        #connexion a la DB
-        db = sqlite3.connect(os.path.join(os.path.dirname(__file__),'data.sqlite'))
-        cursor = db.cursor()
-        #on recherche les correspondances dans la colonne nom
-        cursor.execute("SELECT nom FROM proprietaire where nom like ?", ('%' + text + '%', ))
-        self.dwg.cbxProprio.addItem(text)
-        #on remplit la liste d'affichage
-        for row in cursor.fetchall():
-            self.dwg.cbxProprio.addItem(row[0])
-            print(row[0])
-        #on repermet le EditTextChanged
-        self.dwg.cbxProprio.blockSignals(False)
-        #on ouvre la liste
-        self.dwg.cbxProprio.showPopup()
-
     def letRechercheChange(self, text):
         #on vide la liste d'affichage  
         self.dwg.lwgResult.clear()
@@ -141,23 +89,7 @@ class test(object):
             cursor.execute("SELECT nom FROM proprietaire where nom like ?", ('%' + text2 + '%', ))
             for row in cursor.fetchall():
                 self.dwg.lwgResult.addItem(row[0])
-    """
-    def letCompleterChange(self, text):
-        self.completerList = list()
-        db = sqlite3.connect(os.path.join(os.path.dirname(__file__),'data.sqlite'))
-        cursor = db.cursor()
-        cursor.execute("SELECT nom FROM proprietaire where nom like ?", ('%' + text + '%', ))
-        for row in cursor.fetchall():
-            self.completerList.append(row[0])
-        self.completer = QtGui.QCompleter(self.completerList, self)
-        self.completer.setCompletionMode(QtGui.QCompleter.PopupCompletion)#affiche une popup avec une liste de suggestion
-        self.completer.setCaseSensitivity(QtCore.Qt.CaseInsensitive)#définit la sensibilité a la casse
-        self.setCompleter(self.completer)
 
-        model = QtGui.QStringListModel(self)
-        model.setStringList(self.completerList)
-        completer.setModel(model)
-    """
     def suppression_diacritics(self, s):
         def remove(char):
             deco = unicodedata.decomposition(char)
@@ -166,14 +98,6 @@ class test(object):
             return char
         return ''.join([remove(a) for a in s])
 
-    def btnTestClicked(self):
-
-        db = sqlite3.connect(os.path.join(os.path.dirname(__file__),'data.sqlite'))
-        cursor = db.cursor()
-        cursor.execute("SELECT nom FROM proprietaire where nom like '%lip%' ")
-        for row in cursor.fetchall():
-            print(row[0])
-
     def unload(self):
         # Remove the plugin menu item and icon
         self.iface.removePluginMenu(u"&Test", self.action)
@@ -181,13 +105,12 @@ class test(object):
 
     # run method that performs all the real work
     def run(self):
-
         # show the dialog
         # self.dlg.show()
         # Run the dialog event loop
-        # result = self.dlg.exec_()
+        result = 1
         # See if OK was pressed
         if result == 1:
             # do something useful (delete the line containing pass and
             # substitute with your code)
-            pass
+            self.iface.addDockWidget(Qt.RightDockWidgetArea, self.dwg)
